@@ -10,7 +10,10 @@ function App() {
   return (
     <>
     <nav className='font-secondary'>Navbarr</nav>
-    <Outlet/>
+    <main className='min-h-screen max-w-3xl py-4 mx-auto px-6 font-primary border '>
+
+    <Outlet />
+    </main>
     <footer>Foooter senction</footer>
     </>
   )
