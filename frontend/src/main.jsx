@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
+import Home from "./pages/home/Home.jsx";
+
 
 const approuter = createBrowserRouter([
   {
@@ -11,12 +13,18 @@ const approuter = createBrowserRouter([
     children: [
       {
        path:"/",
-       element:<h1>App</h1>
+       element:<Home/>
       },
       {
-        path:"/about",
+        path:"/checkout",
         element:<h2>the element is about</h2>
-      }
+      },{
+        path:"/dashboard",
+        element:<h2>the element is about</h2>
+      },{
+        path:"/cart",
+        element:<h2>the element is about</h2>
+      },
     ]
   },
 ]);
