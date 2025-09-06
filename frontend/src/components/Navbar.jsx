@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 py-4 mt-2">
+    <div className="max-w-screen-2xl mx-auto px-4 py-2 mt-1 ">
       <nav className="flex justify-between items-center">
         {/* =---------------------- Left Side ----------------= */}
         <div className="flex items-center md:gap-16 gap-4">
@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
 
         {/* =---------------------- Right Side ----------------= */}
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-4 items-center">
           {/* Conditional rendering for logged in user */}
           <div className="relative">
             {currentUser ? (
