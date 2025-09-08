@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getImageUrl } from "../../utils/getImageURl";
-import { Link } from "react-router-dom";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";  
+
+import { Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
+import BookCard from "./BookCard";
+
 const Categories = [
   "Choose a genere",
   "Horror",
@@ -34,7 +44,7 @@ const TopSeller = () => {
   console.log(filteredBooks);
 
   return (
-    <div className=" pl-4 ">
+    <div className=" pl-4 mt-5 md:mt-0  ">
       <h1 className="text-[25px] font-semibold font-primary tracking-wide mb-2 md:mb-4">
         Top Seller
       </h1>
@@ -53,43 +63,42 @@ const TopSeller = () => {
           ))}
         </select>
       </div>
-     
-        {/* displaying the image card on the UI */}
-        <div className=" flex  gap-4 overflow-auto">
-          {filteredBooks.map((item) => (
-            <div
-              key={item._id}
-              className="flex flex-row gap-4 items-center p-4 rounded-md"
-            >
-              {/* 🖼️ Image */}
-             <Link  to={`/books/${item._id}`} className="flex">
-              <img
-                className="w-40 h-auto object-contain flex-shrink-0"
-                src={`${getImageUrl(item.coverImage)}`}
-                alt={item.title}
-              />
-             </Link>
 
-              {/* 📄 Text Content */}
-              <div className="flex flex-col justify-center gap-3  w-60  ">
-                <div className="font-primary font-semibold text-xl">
-                  {item.title}
-                </div>
-                <div>{item.description.slice(0, 60)}...</div>
-                <p>
-                  <span className="text-green-600 font-semibold">
-                    ${item.newPrice}
-                  </span>
-                  <span className="line-through text-gray-500 pl-2">
-                    ${item.oldPrice}
-                  </span>
-                </p>
-              </div>
-            </div>
+      <Swiper
+        navigation={true}
+        slidesPerView={1}
+        spaceBetween={30}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          1180: {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {/* displaying the image card on the UI */}
+
+        {filteredBooks.length > 0 &&
+          filteredBooks.map((item, index) => (
+            <SwiperSlide key={index}>
+              <BookCard item={item} />
+            </SwiperSlide>
           ))}
-        </div>
-      </div>
-    
+      </Swiper>
+    </div>
   );
 };
 
