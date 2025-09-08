@@ -1,4 +1,5 @@
 import HeroSection from "./HeroSection";
+import Recommedation from "./Recommedation";
 import TopSeller from "./TopSeller";
 
 
@@ -10,6 +11,8 @@ const Home = () => {
  <HeroSection/>
  {/* Top Seller Section */}
  <TopSeller/>
+ {/* recommdation section */}
+ <Recommedation/>
     </>
   );
 };
