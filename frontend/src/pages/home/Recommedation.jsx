@@ -33,7 +33,7 @@ const Recommedation = () => {
 
   console.log(filteredBooks);
   return (
-    <div>
+    <div className="mb-8">
       <h1 className="text-[25px] font-semibold font-primary tracking-wide mb-2 md:mb-4 mt-12">
       
         Recommended Books for you
