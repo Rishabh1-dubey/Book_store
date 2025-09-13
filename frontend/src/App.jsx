@@ -2,6 +2,7 @@
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Footer from './pages/home/Footer'
 
 function App() {
 
@@ -14,7 +15,9 @@ function App() {
     <main className='min-h-screen mx-auto  px-4 py-6 '>
     <Outlet />
     </main>
-    <footer>Foooter senction</footer>
+    <footer>
+      <Footer/>
+    </footer>
     </div>
     
   )

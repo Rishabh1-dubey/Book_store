@@ -4,6 +4,9 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import Home from "./pages/home/Home.jsx";
+import Login from "./pages/home/LogIN.jsx";
+import Register from "./pages/home/Register.jsx";
+
 
 
 const approuter = createBrowserRouter([
@@ -21,6 +24,12 @@ const approuter = createBrowserRouter([
       },{
         path:"/dashboard",
         element:<h2>the element is about</h2>
+      },{
+        path:"/login",
+        element:<Login/>
+      },{
+        path:"/register",
+        element:<Register/>
       },{
         path:"/cart",
         element:<h2>the element is about</h2>
