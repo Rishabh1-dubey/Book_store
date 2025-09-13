@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Navbar = () => {
-  const [currentUser] = useState(true);
+  const [currentUser] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
 
   const navigation = [
@@ -80,7 +80,8 @@ const Navbar = () => {
                 )}
               </>
             ) : (
-              <User className="cursor-pointer" />
+              <Link to="/login">
+              <User className="cursor-pointer" /></Link>
             )}
           </div>
 
