@@ -1,8 +1,10 @@
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import logo from "../assets/logo.jpg";
 import avatar from "../assets/avatar.png";
+import { RiShoppingBagLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [currentUser] = useState(false);
@@ -14,6 +16,7 @@ const Navbar = () => {
     { name: "Cart Page", href: "/cart" },
     { name: "Checkout", href: "/checkout" },
   ];
+  const cartItem= useSelector((state)=>state.cart.items)
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 py-2 mt-1 ">
@@ -87,9 +90,15 @@ const Navbar = () => {
 
           <Heart className="hover:text-red-500 cursor-pointer hidden sm:block" />
 
-          <button className="flex items-center space-x-2 bg-yellow-400 px-4 py-2 rounded-lg font-medium tracking-normal">
-            <span>0</span>
-            <ShoppingCart />
+          <button className="relative flex items-center space-x-2  px-3 py-2 rounded-lg font-medium tracking-normal">
+            {/* <span> {cartItem.length}</span>
+            <ShoppingCart /> */}
+            <RiShoppingBagLine className="h-6 w-6 text-gray-700" />
+            {cartItem.length > 0 && (
+              <span className="absolute -right-0.6 bg-[#ea2e0e] rounded-full px-2 py-0.5 -top-1 text-white text-xs">
+                {cartItem.length}
+              </span>
+            )}
           </button>
         </div>
       </nav>
