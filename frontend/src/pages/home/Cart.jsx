@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getImageUrl } from "../../utils/getImageURl";
 import { DecrementItem, IncrementItem, removeItem } from "../../redux/store/slices/cartSlice";
+import  cartImg from "../../assets/books/cart-empty.png"
+
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex  ">
+    <div className="flex bg-slate-200  ">
       {cartItems && cartItems.length > 0 ? (
         cartItems.map((cart) => (
           <div index={cart._id} className="">
@@ -49,7 +51,7 @@ const Cart = () => {
           </div>
         ))
       ) : (
-        <p>Your cart is empty</p>
+        <img className="h-[500px] object-cover border border-red" src={cartImg} alt="Cart"/>
       )}
     </div>
   );
