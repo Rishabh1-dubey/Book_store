@@ -90,6 +90,7 @@ const Navbar = () => {
 
           <Heart className="hover:text-red-500 cursor-pointer hidden sm:block" />
 
+         <Link to="/cart">
           <button className="relative flex items-center space-x-2  px-3 py-2 rounded-lg font-medium tracking-normal">
             {/* <span> {cartItem.length}</span>
             <ShoppingCart /> */}
@@ -100,6 +101,7 @@ const Navbar = () => {
               </span>
             )}
           </button>
+         </Link>
         </div>
       </nav>
     </div>
