@@ -41,7 +41,7 @@ const TopSeller = () => {
           (book) => book.category === selectedCategory.toLowerCase()
         );
 
-  console.log(filteredBooks);
+  // console.log(filteredBooks);
 
   return (
     <div className=" pl-4 mt-5 md:mt-0  ">

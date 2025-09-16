@@ -17,7 +17,7 @@ const handleAddtoCart=(item)=>{
     <div className="rounded-lg transition-shadow duration-300   flex flex-col sm:flex-row gap-4 overflow-x-auto">
       {/* Image */}
       <div className="sm:flex-shrink-0 border rounded-md overflow-hidden  h-full ">
-        <Link to={`/books/${item._id}`}>
+        <Link to={`/books/${item?._id}`}>
           <img
             src={getImageUrl(item.coverImage)}
             alt={item.title}
@@ -35,7 +35,7 @@ const handleAddtoCart=(item)=>{
         </Link>
 
         <p className="text-gray-600 mb-4">
-          {item.description.length > 80
+          {item.description?.length > 80
             ? item.description.slice(0, 80) + "..."
             : item.description}
         </p>
