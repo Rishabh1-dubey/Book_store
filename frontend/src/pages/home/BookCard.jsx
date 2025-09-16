@@ -1,8 +1,18 @@
 import { ShoppingCart } from "lucide-react";
 import { getImageUrl } from "../../utils/getImageURl";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux"
+import { addItem } from "../../redux/store/slices/cartSlice";
+import { toast, Toaster } from "sonner";
+
 
 const BookCard = ({ item }) => {
+const dispatch = useDispatch()
+const handleAddtoCart=(item)=>{
+  dispatch(addItem(item))
+  toast.success("Item Added Successfully Please check to the cart", {duration:1000})
+}
+
   return (
     <div className="rounded-lg transition-shadow duration-300   flex flex-col sm:flex-row gap-4 overflow-x-auto">
       {/* Image */}
@@ -37,9 +47,9 @@ const BookCard = ({ item }) => {
           </span>
         </p>
 
-        <button className="flex gap-2 self-start font-primary font-semibold border border-yellow-500 bg-primary text-black px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
+        <button onClick={()=>handleAddtoCart(item)}  className="flex gap-2 self-start font-primary font-semibold border border-yellow-500 bg-primary text-black px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
           <ShoppingCart />
-          <span>Add to Cart</span>
+          <span> Add to Cart</span>
         </button>
       </div>
     </div>
