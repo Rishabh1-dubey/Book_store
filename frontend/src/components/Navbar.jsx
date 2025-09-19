@@ -24,23 +24,19 @@ const Navbar = () => {
         {/* =---------------------- Left Side ----------------= */}
         <div className="flex items-center md:gap-16 gap-4">
           <Link to="/">
-            <img
-              className="md:w-14 md:h-[55px] w-20 h-20"
-              src={logo}
-              alt="logo"
-            />
+           <h1 className="font-primary font-medium text-xl -pl-24">BookHub</h1>
           </Link>
 
           {/* Search bar */}
-          <div className="relative sm:w-72 w-44">
+          <div className="relative sm:w-72  md:w-[700px]">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-800"
             />
             <input
-              className="bg-[#EAEAEA] w-full py-1 pl-9 pr-3 rounded-md focus:outline-none"
+              className="  w-full py-1 pl-9 pr-3 rounded-md focus:outline-none bg-slate-200 text-gray-700 font-primary leading-7 tracking-wider placeholder:text-gray-600"
               type="text"
-              placeholder="Enter your book"
+              placeholder="Search for Books, Items and more "
             />
           </div>
         </div>
