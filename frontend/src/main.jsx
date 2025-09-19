@@ -6,6 +6,7 @@ import React from "react";
 import Home from "./pages/home/Home.jsx";
 import Login from "./pages/home/LogIN.jsx";
 import Register from "./pages/home/Register.jsx";
+import Cart from "./pages/home/Cart.jsx";
 
 
 
@@ -32,7 +33,7 @@ const approuter = createBrowserRouter([
         element:<Register/>
       },{
         path:"/cart",
-        element:<h2>the element is about</h2>
+        element:<Cart/>
       },
     ]
   },
