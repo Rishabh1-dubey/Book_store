@@ -14,7 +14,7 @@ const HeroSection = () => {
           heart-pumping thrillers to captivating memoirs, this week's new
           releases offer something for everyone.
         </p>
-        <button className="w-full md:w-auto self-start font-primary font-semibold border border-yellow-500 bg-primary text-white px-6 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
+        <button className="w-full md:w-auto self-start font-primary font-semibold border bg-yellow-400 border-yellow-500 bg-primary text-white px-6 py-2 rounded-md  hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
           Subscribe
         </button>
       </div>

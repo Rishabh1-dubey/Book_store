@@ -47,7 +47,7 @@ const handleAddtoCart=(item)=>{
           </span>
         </p>
 
-        <button onClick={()=>handleAddtoCart(item)}  className="flex gap-2 self-start font-primary font-semibold border border-yellow-500 bg-primary text-black px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
+        <button onClick={()=>handleAddtoCart(item)}  className="flex gap-2 self-start font-primary font-semibold border border-yellow-500 bg-primary text-black px-4 py-2 rounded-md bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition-colors duration-300">
           <ShoppingCart />
           <span> Add to Cart</span>
         </button>
