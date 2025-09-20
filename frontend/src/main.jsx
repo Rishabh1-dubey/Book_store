@@ -7,6 +7,7 @@ import Home from "./pages/home/Home.jsx";
 import Login from "./pages/home/LogIN.jsx";
 import Register from "./pages/home/Register.jsx";
 import Cart from "./pages/home/Cart.jsx";
+import { CheckoutPage } from "./pages/home/CheckoutPage";
 
 
 
@@ -21,7 +22,7 @@ const approuter = createBrowserRouter([
       },
       {
         path:"/checkout",
-        element:<h2>the element is about</h2>
+        element:<CheckoutPage/>
       },{
         path:"/dashboard",
         element:<h2>the element is about</h2>
