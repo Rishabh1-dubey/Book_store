@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDb from "./database/connectDB.js";
+import connectDb from "./src/database/connectDB.js";
+import router from "./src/routes/book.routes.js";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -11,6 +12,11 @@ const app = express();
 
 //database connection
 connectDb()
+
+//routes-----------------------------------
+// Book routes --------------
+app.use(express.json())
+app.use("/api/v1/", router)
 
 app.get("/", (req, res) => {
   res.send("hello world");
