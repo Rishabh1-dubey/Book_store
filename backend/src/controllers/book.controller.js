@@ -50,3 +50,4 @@ export const getAllBooks = async (req, res) => {
   const allBook = await Book.find();
   return res.status(200).json({ message: "All books fouund", success: true ,allBook});
 };
+
