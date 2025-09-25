@@ -5,11 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";  
+import "swiper/css/navigation";
 
 import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 import BookCard from "./BookCard";
+import axios from "axios";
 
 const Categories = [
   "Choose a genere",
@@ -24,10 +25,17 @@ const TopSeller = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genere");
 
+  // render a book
   const fetchData = async () => {
-    const res = await fetch("book.json");
-    const data = await res.json();
-    setBooks(data);
+    try {
+      console.log("Attempting to fetch from:", import.meta.env.VITE_BASE_URL);
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/v1/allbook`
+      );
+      setBooks(res.data.allBook);
+    } catch (error) {
+      console.error("Error fetching books:", err);
+    }
   };
   useEffect(() => {
     fetchData();
