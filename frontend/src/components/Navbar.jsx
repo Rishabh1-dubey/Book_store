@@ -5,9 +5,9 @@ import { RiShoppingBagLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
-  const [currentUser] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
 
   const navigation = [
@@ -16,7 +16,13 @@ const Navbar = () => {
     { name: "Cart Page", href: "/cart" },
     { name: "Checkout", href: "/checkout" },
   ];
-  const cartItem= useSelector((state)=>state.cart.items)
+  const cartItem = useSelector((state) => state.cart.items);
+
+  const { currentUser, logout } = useAuth();
+
+  const handleLogOut = () => {
+    logout();
+  };
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 py-2 mt-1 ">
@@ -24,7 +30,7 @@ const Navbar = () => {
         {/* =---------------------- Left Side ----------------= */}
         <div className="flex items-center md:gap-16 gap-4">
           <Link to="/">
-           <h1 className="font-primary font-medium text-xl -pl-24">BookHub</h1>
+            <h1 className="font-primary font-medium text-xl -pl-24">BookHub</h1>
           </Link>
 
           {/* Search bar */}
@@ -74,30 +80,39 @@ const Navbar = () => {
                           </Link>
                         </li>
                       ))}
+                      <li>
+                        <button
+                          onClick={handleLogOut}
+                          className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                        >
+                          Logout
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 )}
               </>
             ) : (
               <Link to="/login">
-              <User className="cursor-pointer" /></Link>
+                <User className="cursor-pointer" />
+              </Link>
             )}
           </div>
 
           <Heart className="hover:text-red-500 cursor-pointer hidden sm:block" />
 
-         <Link to="/cart">
-          <button className="relative flex items-center space-x-2  px-3 py-2 rounded-lg font-medium tracking-normal">
-            {/* <span> {cartItem.length}</span>
+          <Link to="/cart">
+            <button className="relative flex items-center space-x-2  px-3 py-2 rounded-lg font-medium tracking-normal">
+              {/* <span> {cartItem.length}</span>
             <ShoppingCart /> */}
-            <RiShoppingBagLine className="h-6 w-6 text-gray-700" />
-            {cartItem.length > 0 && (
-              <span className="absolute -right-0.6 bg-[#ea2e0e] rounded-full px-2 py-0.5 -top-1 text-white text-xs">
-                {cartItem.length}
-              </span>
-            )}
-          </button>
-         </Link>
+              <RiShoppingBagLine className="h-6 w-6 text-gray-700" />
+              {cartItem.length > 0 && (
+                <span className="absolute -right-0.6 bg-[#ea2e0e] rounded-full px-2 py-0.5 -top-1 text-white text-xs">
+                  {cartItem.length}
+                </span>
+              )}
+            </button>
+          </Link>
         </div>
       </nav>
     </div>
