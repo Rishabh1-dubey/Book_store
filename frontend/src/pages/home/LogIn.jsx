@@ -1,16 +1,47 @@
 import { useState } from "react";
 import { FaGoogle, FaGuaraniSign } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import Register from "./Register";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 const Login = () => {
+  const { registerUser, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
+  // firebase auth logic
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState("");
   const [logIN, setLogIn] = useState(false);
   const handleLogin = () => {
     setLogIn(!logIN);
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault(); // Prevent page reload
+
+    try {
+      await registerUser(formData.email, formData.password);
+      alert("User registered successfully");
+    } catch (error) {
+      setMessage("Please provide a valid email and password");
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      alert("Login successful!");
+      navigate("/");
+    } catch (error) {
+      alert("Google sign in failed!");
+      console.error(error);
+    }
+  };
   return (
     <div className="flex font-primary ">
       <div className="w-full  md:w-1/2 flex flex-col justify-center items-center p-8 md:p-12">
-        <form className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm">
+        <form
+          onSubmit={onSubmit}
+          className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm"
+        >
           <div className="flex justify-center mb-6">
             <h2 className="text-xl font-medium">Book_store</h2>
           </div>
@@ -58,13 +89,16 @@ const Login = () => {
             </span>
           </p>
 
-          <div className=" flex  items-center justify-center  mx-auto border bg-blue-200 hover:bg-blue-400 cursor-pointer rounded-md py-2 px-2 gap-6 w-full md:w-2/3">
+          <button
+            onClick={handleGoogleSignIn}
+            className=" flex  items-center justify-center  mx-auto border bg-blue-200 hover:bg-blue-400 cursor-pointer rounded-md py-2 px-2 gap-6 w-full md:w-2/3"
+          >
             <FaGoogle className="hover:text-yellow-800" />
 
             <span className="hover:text-red-500 cursor-pointer">
               Login with Google
             </span>
-          </div>
+          </button>
         </form>
       </div>
       {/* Right side */}
