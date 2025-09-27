@@ -6,7 +6,7 @@ import { addItem } from "../../redux/store/slices/cartSlice";
 import { toast, Toaster } from "sonner";
 
 
-const BookCard = ({ item }) => {
+const BookCard = ({ item  }) => {
 const dispatch = useDispatch()
 const handleAddtoCart=(item)=>{
   dispatch(addItem(item))

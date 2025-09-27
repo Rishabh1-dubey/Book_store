@@ -10,16 +10,24 @@ import "swiper/css/navigation";
 import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 import BookCard from "./BookCard";
+import axios from "axios";
 
 const Recommedation = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genere");
 
   const fetchData = async () => {
-    const res = await fetch("book.json");
-    const data = await res.json();
-    setBooks(data);
+    try {
+      console.log("Attempting to fetch from:", import.meta.env.VITE_BASE_URL);
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/v1/allbook`
+      );
+      setBooks(res.data.allBook);
+    } catch (err) {
+      console.error("Error fetching books:", err);
+    }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,9 +43,8 @@ const Recommedation = () => {
   return (
     <div className="mb-8">
       <h1 className="text-[25px] font-semibold font-primary tracking-wide mb-2 md:mb-4 mt-12">
-      
         Recommended Books for you
-         <hr></hr>
+        <hr></hr>
       </h1>
       <Swiper
         navigation={true}
@@ -67,7 +74,7 @@ const Recommedation = () => {
         {/* displaying the image card on the UI */}
 
         {filteredBooks.length > 0 &&
-          filteredBooks.slice(8,18).map((item, index) => (
+          filteredBooks.slice(8, 18).map((item, index) => (
             <SwiperSlide key={index}>
               <BookCard item={item} />
             </SwiperSlide>
