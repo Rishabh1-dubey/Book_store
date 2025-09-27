@@ -8,6 +8,7 @@ import Login from "./pages/home/LogIN.jsx";
 import Register from "./pages/home/Register.jsx";
 import Cart from "./pages/home/Cart.jsx";
 import { CheckoutPage } from "./pages/home/CheckoutPage";
+import SingleBook from "./pages/home/singleBook";
 
 
 
@@ -35,6 +36,9 @@ const approuter = createBrowserRouter([
       },{
         path:"/cart",
         element:<Cart/>
+      },{
+        path:"/books/:id",
+        element:<SingleBook/>
       },
     ]
   },
