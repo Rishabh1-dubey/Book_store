@@ -1,7 +1,10 @@
+import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export const CheckoutPage = () => {
+  const cartItem = useSelector((store) => store.cart.items);
+  const { currentUser } = getAuth();
   const [formValue, setFormValue] = useState({
     email: "",
     firstName: "",
@@ -26,13 +29,27 @@ export const CheckoutPage = () => {
       country: "",
       phone: "",
     });
+    const newOrder = {
+      name: cartItem.name,
+      email: currentUser?.email,
+      address: {
+        city: formValue.city,
+        country: formValue.country,
+        state: cartItem.state,
+        zipcode: formValue.zipcode,
+      },
+      phone: formValue.phone,
+      productIds: cartItem.map((item) => item?._id),
+      totalPrice: totalPrice,
+    };
+    console.log(newOrder)
   };
 
   const handleFrom = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
-  const cartItem = useSelector((store) => store.cart.items);
+
   const totalPrice = cartItem.reduce(
     (total, item) => total + Math.floor(item.newPrice) * item.quantity,
     0
@@ -59,7 +76,7 @@ export const CheckoutPage = () => {
             <input
               type="email"
               name="email"
-              value={formValue.email}
+              value={ currentUser?.email}
               onChange={handleFrom}
               className="w-full p-2 border rounded"
             />
