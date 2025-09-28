@@ -1,3 +1,4 @@
+import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -5,6 +6,7 @@ import { useSelector } from "react-redux";
 export const CheckoutPage = () => {
   const cartItem = useSelector((store) => store.cart.items);
   const { currentUser } = getAuth();
+
   const [formValue, setFormValue] = useState({
     email: "",
     firstName: "",
@@ -16,44 +18,55 @@ export const CheckoutPage = () => {
     phone: "",
   });
 
-  const handleFormSubmit = (e) => {
+  const totalPrice = cartItem.reduce(
+    (total, item) => total + Math.floor(item.newPrice) * item.quantity,
+    0
+  );
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formValue);
-    setFormValue({
-      email: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      city: "",
-      postalcode: "",
-      country: "",
-      phone: "",
-    });
-    const newOrder = {
-      name: cartItem.name,
-      email: currentUser?.email,
-      address: {
-        city: formValue.city,
-        country: formValue.country,
-        state: cartItem.state,
-        zipcode: formValue.zipcode,
-      },
-      phone: formValue.phone,
-      productIds: cartItem.map((item) => item?._id),
-      totalPrice: totalPrice,
-    };
-    console.log(newOrder)
+
+   const newOrder = {
+  firstName: formValue.firstName,
+  lastName: formValue.lastName,
+  email: currentUser?.email || formValue.email,
+  address: {
+    city: formValue.city,
+    country: formValue.country,
+    state: "Maharashtra", // or from cart if available
+    zipcode: formValue.postalcode,
+  },
+  phone: Number(formValue.phone),
+  productIds: cartItem.map((item) => item?._id),
+  totalPrice: totalPrice,
+};
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/v1/order`,
+        newOrder
+      );
+      console.log("Order created:", res.data);
+
+      // reset form after success
+      setFormValue({
+        email: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+        city: "",
+        postalcode: "",
+        country: "",
+        phone: "",
+      });
+    } catch (err) {
+      console.error("Error creating order:", err);
+    }
   };
 
   const handleFrom = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
-
-  const totalPrice = cartItem.reduce(
-    (total, item) => total + Math.floor(item.newPrice) * item.quantity,
-    0
-  );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto  font-secondary px-6 tracking-tighter">
