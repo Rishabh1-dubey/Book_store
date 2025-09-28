@@ -46,6 +46,7 @@ export const AuthProvide = ({ children }) => {
                 const userData = {
                     email, username: displayName, photo: photoURL
                 } 
+                console.log("getting ser datac:",userData)
             }
         })
 
