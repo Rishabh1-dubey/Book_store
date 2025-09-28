@@ -9,6 +9,9 @@ import Register from "./pages/home/Register.jsx";
 import Cart from "./pages/home/Cart.jsx";
 import { CheckoutPage } from "./pages/home/CheckoutPage";
 import SingleBook from "./pages/home/singleBook";
+import { Provider } from "react-redux";
+import appStore from "./redux/store/appStore";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 
 
@@ -23,16 +26,13 @@ const approuter = createBrowserRouter([
       },
       {
         path:"/checkout",
-        element:<CheckoutPage/>
+        element:<PrivateRoutes><CheckoutPage/></PrivateRoutes>
       },{
         path:"/dashboard",
         element:<h2>the element is about</h2>
       },{
         path:"/login",
         element:<Login/>
-      },{
-        path:"/register",
-        element:<Register/>
       },{
         path:"/cart",
         element:<Cart/>
@@ -46,6 +46,9 @@ const approuter = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Provider store={appStore}>
+
     <RouterProvider router={approuter} />
+    </Provider>
   </React.StrictMode>
 );
