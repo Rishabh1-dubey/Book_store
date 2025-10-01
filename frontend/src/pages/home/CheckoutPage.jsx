@@ -2,8 +2,10 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutPage = () => {
+  const navigate = useNavigate();
   const cartItem = useSelector((store) => store.cart.items);
   const { currentUser } = getAuth();
 
@@ -26,20 +28,20 @@ export const CheckoutPage = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-   const newOrder = {
-  firstName: formValue.firstName,
-  lastName: formValue.lastName,
-  email: currentUser?.email || formValue.email,
-  address: {
-    city: formValue.city,
-    country: formValue.country,
-    state: "Maharashtra", // or from cart if available
-    zipcode: formValue.postalcode,
-  },
-  phone: Number(formValue.phone),
-  productIds: cartItem.map((item) => item?._id),
-  totalPrice: totalPrice,
-};
+    const newOrder = {
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      email: currentUser?.email || formValue.email,
+      address: {
+        city: formValue.city,
+        country: formValue.country,
+        state: "Maharashtra", // or from cart if available
+        zipcode: formValue.postalcode,
+      },
+      phone: Number(formValue.phone),
+      productIds: cartItem.map((item) => item?._id),
+      totalPrice: totalPrice,
+    };
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/v1/order`,
@@ -58,6 +60,7 @@ export const CheckoutPage = () => {
         country: "",
         phone: "",
       });
+      navigate("/orders");
     } catch (err) {
       console.error("Error creating order:", err);
     }
@@ -89,7 +92,7 @@ export const CheckoutPage = () => {
             <input
               type="email"
               name="email"
-              value={ currentUser?.email}
+              value={currentUser?.email}
               onChange={handleFrom}
               className="w-full p-2 border rounded"
             />
