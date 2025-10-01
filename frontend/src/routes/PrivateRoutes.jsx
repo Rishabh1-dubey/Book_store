@@ -1,9 +1,14 @@
 import { useAuth } from '@/context/AuthContext'
-import React, { Children } from 'react'
+import { Loader2 } from 'lucide-react'
+import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 const PrivateRoutes = ({children}) => {
-const {currentUser}= useAuth()
+const {currentUser,loading}= useAuth()
+
+if(loading){
+ return <div className=''><Loader2 className='mx-auto items-center animate-spin'/></div>
+}
 if(currentUser){
     return children
 }
