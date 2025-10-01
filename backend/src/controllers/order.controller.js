@@ -17,7 +17,7 @@ export const createOrder = async (req, res) => {
 export const getOrder = async (req, res) => {
   try {
     const { email } = req.params;
-    const findOrder = (await Order.find({ email })).sort({ createdAt: -1 });
+  const findOrder = await Order.find({ email }).sort({ createdAt: -1 });
 
     if (!findOrder) {
      return  res
