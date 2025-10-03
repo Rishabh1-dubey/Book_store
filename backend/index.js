@@ -24,12 +24,12 @@ app.get("/", (req, res) => {
 });
 //routes-----------------------------------
 // Book routes --------------
-app.use("/api/v1/", bookRouter);
+app.use("/api/v1", bookRouter);
 app.use("/api/v1/order", orderRouter);
 
 
 //---------------- admin routes-------------------
-app.use("/api/", adminRouter)
+app.use("/api", adminRouter)
 app.use("/api/admin/dashboard", router)
 
 app.listen(port, () => {
