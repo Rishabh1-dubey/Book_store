@@ -1,6 +1,5 @@
 import App from "@/App";
 import Login from "@/pages/home/LogIn.jsx";
-import { Home } from "lucide-react";
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
 import { CheckoutPage } from "@/pages/home/CheckoutPage";
@@ -12,9 +11,12 @@ import AdminLogin from "@/components/AdminLogin";
 import DashboardLayout from "@/pages/dashboard/DashboardLayout";
 import AdminRoutes from "./adminRoutes";
 import AdminDashborad from "@/pages/dashboard/AdminDashborad";
-import AddBook from "@/pages/dashboard/AddBook";
-import EditBook from "@/pages/dashboard/EditBook";
-import DeleteBook from "@/pages/dashboard/deleteBook";
+import AddBook from "@/pages/Books/AddBook/AddBook";
+import EditBook from "@/pages/Books/EditBook";
+import DeleteBook from "@/pages/Books/deleteBook";
+import Home from "@/pages/home/Home";
+import MangeBook from "@/pages/Books/MangeBook";
+
 
 
 const router = createBrowserRouter([
@@ -110,6 +112,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoutes>
             <DeleteBook />
+          </AdminRoutes>
+        ),
+      },
+       {
+        path: "manage-books",
+        element: (
+          <AdminRoutes>
+          <MangeBook/>
           </AdminRoutes>
         ),
       },
