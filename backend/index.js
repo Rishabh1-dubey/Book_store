@@ -12,7 +12,13 @@ const port = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: "https://book-store-jo3y.vercel.app" }));
+const corsOptions = {
+  origin: "https://book-store-jo3y.vercel.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204 // For pre-flight requests
+};
+app.use(cors(corsOptions));
 
 
 //database connection
