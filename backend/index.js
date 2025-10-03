@@ -18,6 +18,10 @@ app.use(cors());
 //database connection
 connectDb();
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Book Store API!");
+});
 //routes-----------------------------------
 // Book routes --------------
 app.use("/api/v1/", bookRouter);
