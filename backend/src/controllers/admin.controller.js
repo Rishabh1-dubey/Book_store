@@ -19,7 +19,7 @@ adminRouter.post("/admin", async (req, res) => {
 
     const token = jwt.sign(
       { id: admin._id, username: admin.username, role: admin.role },"dnmgndfkgndfkgdgk",
-      { expiresIn: "1h" }
+      { expiresIn: "12h" }
     );
 
     return res.status(200).json({
