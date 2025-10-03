@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isDropDown, setIsDropDown] = useState(false);
 
   const navigation = [
-    { name: "Dashboard", href: "/dashboard" },
+    { name: "Dashboard", href: "/orders" },
     { name: "Orders", href: "/orders" },
     { name: "Cart Page", href: "/cart" },
     { name: "Checkout", href: "/checkout" },
@@ -50,6 +50,9 @@ const Navbar = () => {
         {/* =---------------------- Right Side ----------------= */}
         <div className="flex gap-4 items-center">
           {/* Conditional rendering for logged in user */}
+
+<Link to="/admin"> <button className="bg-black text-white rounded-xl px-2">Admin</button></Link>
+         
           <div className="relative">
             {currentUser ? (
               <>
