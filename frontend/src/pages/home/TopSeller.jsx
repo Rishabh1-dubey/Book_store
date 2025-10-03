@@ -31,6 +31,7 @@ const TopSeller = () => {
       const res = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/v1/allbook`
       );
+      console.log(res.data)
       setBooks(res.data.allBook);
     } catch (error) {
       console.error("Error fetching books:", err);
