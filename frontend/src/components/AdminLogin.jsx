@@ -15,7 +15,7 @@ const AdminLogin = () => {
     setMessage(""); // clear old message
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin", {
+          const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
