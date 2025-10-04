@@ -14,6 +14,8 @@ const AdminLogin = () => {
     e.preventDefault();
     setMessage(""); // clear old message
 
+
+    
     try {
           const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin`, {
         method: "POST",
